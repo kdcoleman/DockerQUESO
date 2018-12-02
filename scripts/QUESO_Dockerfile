@@ -1,0 +1,56 @@
+FROM ubuntu:latest
+
+LABEL MAINTAINER="Kayla D. Coleman <kdcolem2@ncsu.edu>"
+
+ARG NODEJS_VERSION="8"
+ARG CMAKE_VERSION="3.20.0"
+ARG OPENMPI_VERSION="26.0.0"
+ARG BOOST_VERSION="1.68.0"
+ARG GSL_VERSION="2.5"
+ARG QUESO_VERSION="0.57.1"
+ARG TPL_ROOT="/usr/lib/x86_64-linux-gnu"
+
+# 1) Install system package dependencies
+# 2) Install GCC 7
+# 3) Install CMake
+# 4) Install OpenMPI
+# 5) Install Boost
+# 6) Install GSL
+# 7) Install QUESO
+# 8) Cleanup
+# 9) Add and set user for use by QUESO and set work folder
+
+ENV CC "gcc"
+ENV CXX "g++"
+ENV MPICC "mpicc"
+ENV MPICXX "mpic++"
+ENV FC "gfortran"
+ENV PATH="/usr/bin:${TPL_ROOT}:/usr/local/bin:$PATH"
+
+RUN apt-get update \
+    && apt-get install -y build-essential \
+       autotools-dev \
+       curl \
+       unzip \
+       git \
+       vim \
+       cmake \
+       openmpi-bin libopenmpi-dev \
+       openssh-client openssh-server \
+       libboost-all-dev \
+       libgsl-dev \
+    && cd /tmp \
+    && curl -sL https://github.com/libqueso/queso/releases/download/v0.57.1/queso-${QUESO_VERSION}.tar.gz -o queso-${QUESO_VERSION}.tar.gz \
+    && tar -xzf queso-${QUESO_VERSION}.tar.gz \
+    && ls /usr/lib/x86_64-linux-gnu \
+    && cd queso-${QUESO_VERSION} \
+    && ./configure \
+    && make \
+    && make install \
+    && apt-get autoremove -y \
+    && rm -rf /tmp/queso-${QUESO_VERSION}.tar.gz \
+    && mkdir /quesoWorking \
+    && ldconfig
+
+#Setup working directory
+WORKDIR /quesoWorking
