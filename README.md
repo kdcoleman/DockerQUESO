@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-   1. Git clone the GitHub repo
+   1. Git clone the DockerQUESO GitHub repo
 
     git clone https://github.com/kdcoleman/DockerQUESO.git
     
