@@ -2,7 +2,6 @@ FROM ubuntu:latest
 
 LABEL MAINTAINER="Kayla D. Coleman <kdcolem2@ncsu.edu>"
 
-ARG NODEJS_VERSION="8"
 ARG CMAKE_VERSION="3.20.0"
 ARG OPENMPI_VERSION="26.0.0"
 ARG BOOST_VERSION="1.68.0"
@@ -29,6 +28,7 @@ ENV PATH="/usr/bin:${TPL_ROOT}:/usr/local/bin:$PATH"
 
 RUN apt-get update \
     && apt-get install -y build-essential \
+       gfortran \
        autotools-dev \
        curl \
        unzip \
@@ -40,9 +40,8 @@ RUN apt-get update \
        libboost-all-dev \
        libgsl-dev \
     && cd /tmp \
-    && curl -sL https://github.com/libqueso/queso/releases/download/v0.57.1/queso-${QUESO_VERSION}.tar.gz -o queso-${QUESO_VERSION}.tar.gz \
+    && curl -OsL https://github.com/libqueso/queso/releases/download/v0.57.1/queso-${QUESO_VERSION}.tar.gz \
     && tar -xzf queso-${QUESO_VERSION}.tar.gz \
-    && ls /usr/lib/x86_64-linux-gnu \
     && cd queso-${QUESO_VERSION} \
     && ./configure \
     && make \

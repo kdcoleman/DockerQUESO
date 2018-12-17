@@ -23,4 +23,4 @@
    
      cd outputData/
     
-   To exit the Docker container type exit
+   To exit the Docker container type exit.
