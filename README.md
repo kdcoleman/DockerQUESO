@@ -30,7 +30,9 @@
    
      cd QuesoDiagnostics/
      
-   **To exit the Docker container type `exit`.**
+   6. To exit the Docker container
+   
+     exit
    
  ### QUESO Library
     
@@ -56,4 +58,6 @@
    
      cd outputData/
     
-   **To exit the Docker container type `exit`.**
+   6. To exit the Docker container
+   
+     exit
