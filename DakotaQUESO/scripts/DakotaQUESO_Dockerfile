@@ -52,8 +52,8 @@ RUN apt-get update \
     && mkdir -p ${DAKOTA_BUILD} \
     && cd ${DAKOTA_BUILD} \
     && cmake -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DCMAKE_Fortran_COMPILER=gfortran -DCMAKE_C_FLAGS:STRING="-O2" -DCMAKE_CXX_FLAGS:STRING="-O2" -DCMAKE_Fortran_FLAGS:STRING="-O2" -DDAKOTA_HAVE_MPI:BOOL=FALSE -DDAKOTA_HAVE_GSL:BOOL=TRUE -DHAVE_QUESO:BOOL=TRUE -DBoost_INCLUDE_DIR=/usr/include/ -DBOOST_LIBRARYDIR=${TPL_ROOT} -DBoost_NO_BOOST_CMAKE:BOOL=TRUE -DBoost_NO_SYSTEM_PATHS:BOOL=TRUE -DCMAKE_INSTALL_PREFIX=${DAKOTA_ROOT}/6.8 ${DAKOTA_SRC} 2>&1 | tee dakota.cmake.log \
-    && make -j4 2>&1 | tee dakota.make.log \
-    && make -j4 install 2>&1 | tee dakota.install.log \
+    && make -j 2 2>&1 | tee dakota.make.log \
+    && make -j 2 install 2>&1 | tee dakota.install.log \
     && apt-get autoremove -y \
     && rm -rf /${DAKOTA_ROOT}/dakota-6.8-release-public.src.tar.gz \
     && mkdir /dakotaQuesoWorking \

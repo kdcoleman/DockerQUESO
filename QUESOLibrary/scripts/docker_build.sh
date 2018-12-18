@@ -2,4 +2,4 @@
 set -xeuo pipefail
 
 
-docker build -t kdcoleman/dakotaquesobuild:latest -f ./scripts/DakotaQUESO_Dockerfile .
+docker build -t kdcoleman/quesobuild:latest -f ./scripts/QUESO_Dockerfile .
