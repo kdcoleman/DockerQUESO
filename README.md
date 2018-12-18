@@ -8,7 +8,7 @@ There are two dockerized QUESO options on this repo, Dakota QUESO and the QUESO 
 
     git clone https://github.com/kdcoleman/DockerQUESO.git
     
- Then, follow the instructions for either Dakota QUESO or QUESO Library. 
+Then, follow the instructions for either Dakota QUESO or the QUESO Library. The documentation for Dakota 6.8 is provided [here](https://dakota.sandia.gov/content/manuals) and the documentation for the QUESO library is provided [here](https://github.com/libqueso/queso/blob/dev/QUESO_users_manual.pdf). 
     
  ### Dakota QUESO
     
