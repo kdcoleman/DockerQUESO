@@ -2,9 +2,13 @@
 
 ## Getting Started
 
-   Git clone the DockerQUESO GitHub repo
+You must first download and install Docker on your machine. Visit [Docker](https://docs.docker.com/v17.09/docker-for-mac/install/) and select your platform on the left toolbar under Docker CE. Follow the installation instructions. After you have successfully installed Docker CE, browse through the [Get Started with Docker](https://docs.docker.com/get-started/) guide. 
+
+There are two dockerized QUESO options on this repo, Dakota QUESO and the QUESO library. To get started, git clone the DockerQUESO GitHub repo
 
     git clone https://github.com/kdcoleman/DockerQUESO.git
+    
+ Then, follow the instructions for either Dakota QUESO or QUESO Library. 
     
  ### Dakota QUESO
     
