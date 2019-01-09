@@ -39,13 +39,15 @@ RUN apt-get update \
        openssh-client openssh-server \
        libboost-all-dev \
        libgsl-dev \
+       python-pip \
+    && pip install numpy scipy pandas mpmath==1.0.0 sympy==1.2 \
     && cd /tmp \
     && curl -OsL https://github.com/libqueso/queso/releases/download/v0.57.1/queso-${QUESO_VERSION}.tar.gz \
     && tar -xzf queso-${QUESO_VERSION}.tar.gz \
     && cd queso-${QUESO_VERSION} \
     && ./configure \
-    && make \
-    && make install \
+    && make -j2\
+    && make -j2 install \
     && apt-get autoremove -y \
     && rm -rf /tmp/queso-${QUESO_VERSION}.tar.gz \
     && mkdir /quesoWorking \

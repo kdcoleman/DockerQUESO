@@ -1,0 +1,40 @@
+################################################
+#Makefile for QUESO example
+################################################
+
+QUESO_DIR = /usr/local
+BOOST_DIR = /usr
+GSL_DIR = /usr
+
+
+INC_PATHS = -I. \
+	    -I$(QUESO_DIR)/include/queso \
+	    -I$(BOOST_DIR)/include/boost \
+	    -I$(GSL_DIR)/include/gsl \
+
+LIBS = \
+	-L$(QUESO_DIR)/lib -lqueso \
+	-L$(BOOST_DIR)/lib/x86_64-linux-gnu -lboost_program_options \
+	-L$(GSL_DIR)/lib/x86_64-linux-gnu -lgsl \
+
+CXX = mpic++
+CXXFLAGS += -g -Wall -c
+
+default: all
+
+.SUFFIXES: .o .C
+
+all: gravity_sipfp
+
+clean:
+	rm -f *~ *.o gravity_ipfp_example
+
+gravity_sipfp: gravity_main.o gravity_likelihood.o gravity_compute.o gravity_qoi.o 
+	$(CXX)  gravity_main.o \
+		gravity_likelihood.o \
+		gravity_compute.o \
+		gravity_qoi.o \
+		-o gravity_ipfp_example $(LIBS)
+
+%.o: %.C
+	$(CXX) $(INC_PATHS) $(CXXFLAGS) $<
